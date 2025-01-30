@@ -198,7 +198,7 @@ class TrustedTimestamps
         
         $responsefile = self::createTempFile($binary_response_string);
 
-        $cmd = "openssl ts -verify -digest ".escapeshellarg($hash);
+        $cmd = "openssl ts -verify -attime " . $response_time . " -digest ".escapeshellarg($hash);
         if ($hash_algo !== 'sha1') {
             $cmd .= " -".addslashes($hash_algo);
         }
